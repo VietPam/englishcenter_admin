@@ -1,3 +1,4 @@
+import { getLevels } from '../services/levels.api.js';
 import { getListTeacher } from '../services/teacher.api.js'
 import { format, parseISO, isValid } from 'date-fns';
 import React, { useContext, useEffect, useState } from 'react'
@@ -5,6 +6,7 @@ export const AppContext = React.createContext();
 
 export default function AppProvider({ children }) {
     const [teachers, setTeachers] = useState(null);
+    const [levels, setLevels] = useState(null);
 
     // Load Teacher
     async function loadTeachers() {
@@ -29,11 +31,27 @@ export default function AppProvider({ children }) {
             return '22/11/2002';
         }
     }
+
+     // load Levels
+     useEffect(() => {
+        async function loadLevels() {
+            try {
+                const data = await getLevels();
+                setLevels(data)
+            } catch (error) {
+                console.error('Error loading Levels:', error);
+            }
+        }
+        loadLevels();
+    }, []);
+
+
     return (
-        <AppContext.Provider value={{ teachers, loadTeachers, formatDate }}>
+        <AppContext.Provider value={{ teachers, levels, loadTeachers, formatDate }}>
             {children}
         </AppContext.Provider>
     )
+    
 
 }
 
