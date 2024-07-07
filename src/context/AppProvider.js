@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { getLevels } from '../services/levels.api.js';
 import { getListCourse } from '../services/course.api';
 import { getListTeacher } from '../services/teacher.api.js'
@@ -32,6 +33,27 @@ export default function AppProvider({ children }) {
         loadTeachers();
     }, []);
 
+
+    // upLoad Image on Cloud Storage
+    async function uploadImage(image, folder) {
+        const cloud_name = `dhvgsmsf2`
+        const preset_name = `imageupload`
+        const api = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`
+        const formData = new FormData();
+        const url = []
+        formData.append('upload_preset', preset_name);
+        formData.append('folder', folder);
+        formData.append('file', image);
+        await axios.post(api, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+            .then((response) => { url.push(response.data.secure_url); })
+            .catch((error) => { return error })
+        return url;
+    };
+
     // FormatDate 
     function formatDate(date) {
         const dateObj = parseISO(date);
@@ -58,7 +80,7 @@ export default function AppProvider({ children }) {
 
 
     return (
-        <AppContext.Provider value={{ teachers, levels, courses, loadTeachers, formatDate, loadCourses }}>
+        <AppContext.Provider value={{ teachers, levels, courses, loadTeachers, formatDate, loadCourses, uploadImage }}>
             {children}
         </AppContext.Provider>
     )

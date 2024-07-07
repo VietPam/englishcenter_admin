@@ -12,9 +12,6 @@ export const getListCourse = async ()=>{
 export const addCourse = async (course)=>{
     try {
         const response = await API().post('/admin/course/create',course,{
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
         })
         return response.data;
     } catch (error) {
