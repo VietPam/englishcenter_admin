@@ -1,3 +1,4 @@
+import { getAllClass, getClassByCourse } from '../services/class.api.js';
 import axios from 'axios';
 import { getLevels } from '../services/levels.api.js';
 import { getListCourse } from '../services/course.api';
@@ -10,6 +11,7 @@ export default function AppProvider({ children }) {
     const [courses, setCourses] = useState(null);
     const [teachers, setTeachers] = useState(null);
     const [levels, setLevels] = useState(null);
+    const [classes, setClasses] = useState(null);
 
     // load course
     async function loadCourses() {
@@ -78,9 +80,47 @@ export default function AppProvider({ children }) {
         loadLevels();
     }, []);
 
+    // Load Classes trong Course
+    async function loadClassesByCourse(id) {
+        try {
+            const data = await getClassByCourse(id);
+            setClasses(data);
+        } catch (error) {
+            console.error('Error loading Levels:', error);
+        }
+    }
+    useEffect(() => {
+        loadClassesByCourse();
+    }, [])
+
+    // Load All Class
+    async function loadAllClasses() {
+        try {
+            const data = await getAllClass();
+            setClasses(data);
+        } catch (error) {
+            console.error('Error loading Levels:', error);
+        }
+    }
+    useEffect(() => {
+        loadAllClasses();
+    }, [])
+
+    // Load Classes trong Course
+    async function loadClassesByCourse(id) {
+        try {
+            const data = await getClassByCourse(id);
+            setClasses(data);
+        } catch (error) {
+            console.error('Error loading Levels:', error);
+        }
+    }
+    useEffect(() => {
+        loadClassesByCourse();
+    }, [])
 
     return (
-        <AppContext.Provider value={{ teachers, levels, courses, loadTeachers, formatDate, loadCourses, uploadImage }}>
+        <AppContext.Provider value={{ teachers, levels, courses, classes, loadTeachers, formatDate, loadAllClasses, loadCourses, uploadImage, loadClassesByCourse }}>
             {children}
         </AppContext.Provider>
     )

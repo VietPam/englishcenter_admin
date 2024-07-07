@@ -9,6 +9,8 @@ import UpdateInforCourse from "../pages/Courses/UpdateInforCourse";
 import Teacher from "../pages/Teacher/Teacher";
 import AddTeacher from "../pages/Teacher/AddTeacher";
 import UpdateTeacher from "../pages/Teacher/UpdateInforTeacher";
+//class
+import Classes from "../pages/Class/Classes";
 
 const routes = [
     {path: '/login', page: Login,layout: LoginLayout},
@@ -22,6 +24,8 @@ const routes = [
     {path: '/addteacher', page: AddTeacher},
     {path: '/updateteacher/:id', page: UpdateTeacher},
 
+    //class
+    {path: '/classes/:id', page: Classes},
     
 ]
 

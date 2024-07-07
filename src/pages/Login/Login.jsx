@@ -48,7 +48,7 @@ const Login = () => {
         if (!hasErrors) {
             login(formData).then((response) => {
                 sessionStorage.setItem('isLogin', true)
-                navigate('/')
+                navigate('/course')
             })
                 .catch(err => {
                     setOpenSnackbar(true);
