@@ -1,3 +1,4 @@
+import { getListStudent } from '../services/student.api.js'
 import { getAllClass, getClassByCourse } from '../services/class.api.js';
 import axios from 'axios';
 import { getLevels } from '../services/levels.api.js';
@@ -12,6 +13,7 @@ export default function AppProvider({ children }) {
     const [teachers, setTeachers] = useState(null);
     const [levels, setLevels] = useState(null);
     const [classes, setClasses] = useState(null);
+    const [students, setStudents] = useState(null);
 
     // load course
     async function loadCourses() {
@@ -119,8 +121,21 @@ export default function AppProvider({ children }) {
         loadClassesByCourse();
     }, [])
 
+    // load Student
+    async function loadStudents() {
+        try {
+            const data = await getListStudent();
+            setStudents(data)
+        } catch (error) {
+            console.error('Error loading students:', error);
+        }
+    }
+    useEffect(() => {
+        loadStudents();
+    }, []);
+
     return (
-        <AppContext.Provider value={{ teachers, levels, courses, classes, loadTeachers, formatDate, loadAllClasses, loadCourses, uploadImage, loadClassesByCourse }}>
+        <AppContext.Provider value={{ teachers, levels, courses, classes, students, loadTeachers, formatDate, loadAllClasses, loadCourses, uploadImage, loadClassesByCourse, loadStudents }}>
             {children}
         </AppContext.Provider>
     )
