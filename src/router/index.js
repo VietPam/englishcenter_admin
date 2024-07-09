@@ -11,6 +11,10 @@ import AddTeacher from "../pages/Teacher/AddTeacher";
 import UpdateTeacher from "../pages/Teacher/UpdateInforTeacher";
 //class
 import Classes from "../pages/Class/Classes";
+//student
+import Student from "../pages/Student/Student";
+import AddStudent from "../pages/Student/AddStudent";
+import UpdateInforStudent from "../pages/Student/UpdateInforStudent";
 
 const routes = [
     {path: '/login', page: Login,layout: LoginLayout},
@@ -26,7 +30,11 @@ const routes = [
 
     //class
     {path: '/classes/:id', page: Classes},
-    
+
+    //student
+    {path: '/student', page: Student,},
+    {path: '/addstudent', page: AddStudent},
+    {path: '/updatestudent/:id', page: UpdateInforStudent},
 ]
 
 export default routes;
