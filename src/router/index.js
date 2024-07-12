@@ -15,8 +15,12 @@ import Classes from "../pages/Class/Classes";
 import Student from "../pages/Student/Student";
 import AddStudent from "../pages/Student/AddStudent";
 import UpdateInforStudent from "../pages/Student/UpdateInforStudent";
+//homepage
+import HomePage from "../pages/HomePage/HomePage";
 
 const routes = [
+    {path: '/', page: HomePage},
+
     {path: '/login', page: Login,layout: LoginLayout},
     //course
     {path: '/course', page: Course,},
