@@ -7,6 +7,15 @@ export const getAllClass = async () => {
         throw error;
     }
 }
+export const getClass = async (id)=>{
+    try {
+        const response = await API().get('/admin/class/getclass',{params: {id: id}})
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+      
+}
 
 
 export const getClassByCourse = async (id) => {

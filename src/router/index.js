@@ -17,6 +17,8 @@ import AddStudent from "../pages/Student/AddStudent";
 import UpdateInforStudent from "../pages/Student/UpdateInforStudent";
 //homepage
 import HomePage from "../pages/HomePage/HomePage";
+//schedule
+import ScheduleClass from "../pages/Schedule/Schedule";
 
 const routes = [
     {path: '/', page: HomePage},
@@ -39,6 +41,10 @@ const routes = [
     {path: '/student', page: Student,},
     {path: '/addstudent', page: AddStudent},
     {path: '/updatestudent/:id', page: UpdateInforStudent},
+
+    //schedule
+    {path: '/schedule', page: ScheduleClass},
+
 ]
 
 export default routes;
