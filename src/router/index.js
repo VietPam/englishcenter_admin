@@ -19,6 +19,8 @@ import UpdateInforStudent from "../pages/Student/UpdateInforStudent";
 import HomePage from "../pages/HomePage/HomePage";
 //schedule
 import ScheduleClass from "../pages/Schedule/Schedule";
+//register
+import RegisterPage from "../pages/Register/RegisterPage";
 
 const routes = [
     {path: '/', page: HomePage},
@@ -44,6 +46,8 @@ const routes = [
 
     //schedule
     {path: '/schedule', page: ScheduleClass},
+    //register
+    {path: '/register', page: RegisterPage},
 
 ]
 
